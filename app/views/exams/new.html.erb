@@ -1,0 +1,9 @@
+<h1>IELTS Writing Task2<h1>
+<div>
+  <%= form_with model: @exam do |form| %>
+    <%= form.text_area :question, value: @question %>
+    <%= form.text_area :answer %>
+    <%= form.submit "Submit" %>
+  <% end %>
+</div>
+<p><%= link_to 'Home', exams_path %></p>
