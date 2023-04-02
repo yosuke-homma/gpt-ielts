@@ -1,6 +1,9 @@
-class PracticeController < ApplicationController
+class ExamsController < ApplicationController
 
   def index
+  end
+
+  def new
     client = OpenAI::Client.new
     response = client.chat(
       parameters: {
@@ -11,8 +14,13 @@ class PracticeController < ApplicationController
             }], # Required.
           temperature: 0.7,
       })
-    question = response.dig("choices", 0, "message", "content")
-    render html: question
+    @question = response.dig("choices", 0, "message", "content")
+    @exam = Exam.new
+  end
+
+  def create
+    @exam = Exam.new(exam_params)
+    @exam.save
   end
 
   private
@@ -22,5 +30,9 @@ class PracticeController < ApplicationController
     Could you please provide me with a Writing Task 2 prompt for the IELTS exam?
     You only need to give me one, that would be perfect. 
     EXAM
+  end
+
+  def exam_params
+    params.require(:exam).permit(:question, :answer)
   end
 end
