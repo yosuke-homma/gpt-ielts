@@ -1,8 +1,13 @@
 <h1>IELTS Writing Task2<h1>
 <div>
   <%= form_with model: @exam do |form| %>
-    <%= form.text_area :question, value: @question %>
-    <%= form.text_area :answer %>
+    <div>
+      <%= form.label :question %>
+      <%= tag.p @question, disabled: true %>
+    </div>
+    <div>
+      <%= form.text_area :answer %>
+    </div>
     <%= form.submit "Submit" %>
   <% end %>
 </div>
