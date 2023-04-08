@@ -1,6 +1,7 @@
 <h1>IELTS Writing Task2<h1>
 <div>
   <%= form_with model: @exam do |form| %>
+    <%= render 'shared/error_messages' %>
     <div>
       <%= form.label :question %>
       <%= tag.p @question, disabled: true %>
