@@ -34,7 +34,7 @@ class ExamsController < ApplicationController
     if @exam.save
       redirect_to exam_path @exam
     else
-      render 'exams/index'
+      render 'new', status: :unprocessable_entity
     end
   end
 
