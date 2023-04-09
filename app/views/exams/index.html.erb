@@ -4,14 +4,15 @@
   </button>
 </h1>
 <% @exams.each do |exam| %>
+  <h2>Exam History</h2>
   <div class="">
-    <h2>Question:</h2>
+    <h3>Question:</h3>
     <p><%= exam.question %></p>
-    <h2>Answer:</h2>
+    <h3>Answer:</h3>
     <p><%= exam.answer %></p>
-    <h2>Review:</h2>
+    <h3>Review:</h3>
     <p><%= exam.review %></p>
-    <h2>Took at:</h2>
+    <h3>Took at:</h3>
     <p><%= exam.created_at %></p>
     <hr>
   </div>
