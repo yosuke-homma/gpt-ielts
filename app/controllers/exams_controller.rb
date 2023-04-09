@@ -1,6 +1,7 @@
 class ExamsController < ApplicationController
 
   def index
+    @exams = Exam.all
   end
 
   def new
@@ -14,8 +15,8 @@ class ExamsController < ApplicationController
             }], # Required.
           temperature: 0.7,
       })
-    @question = response.dig("choices", 0, "message", "content")
     @exam = Exam.new
+    @exam.question = response.dig("choices", 0, "message", "content")
   end
   
   def create

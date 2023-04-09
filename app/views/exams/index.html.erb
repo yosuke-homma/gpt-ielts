@@ -1,1 +1,18 @@
-<h1><%= link_to 'Start new exam', new_exam_path %></h1>
+<h1>
+  <button>
+    <%= link_to 'Start new exam', new_exam_path %>
+  </button>
+</h1>
+<% @exams.each do |exam| %>
+  <div class="">
+    <h2>Question:</h2>
+    <p><%= exam.question %></p>
+    <h2>Answer:</h2>
+    <p><%= exam.answer %></p>
+    <h2>Review:</h2>
+    <p><%= exam.review %></p>
+    <h2>Took at:</h2>
+    <p><%= exam.created_at %></p>
+    <hr>
+  </div>
+<% end %>
