@@ -1,0 +1,26 @@
+header {
+  overflow: hidden;
+  padding: 20px 20px 0px 20px;
+}
+
+header a {
+  float: left;
+  text-align: center;
+  padding: 12px;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.txt-box-answer {
+  width: 90%;
+  height: 500px;
+  font-size: 20px;
+}
+
+.container {
+  padding: 0px 24px 0px;
+}
+
+.question {
+  font-size: 25px;
+}
