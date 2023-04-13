@@ -27,6 +27,7 @@ jobs:
         bundle install --path vendor/bundle --quiet --jobs 4 --retry 3
     - name: Database create and migrate
       run: |
+        cp config/database.yml.ci config/database.yml
         bundle exec rails db:create
         bundle exec rails db:migrate
     - name: Test with Rspec
