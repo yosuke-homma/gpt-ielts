@@ -1,0 +1,20 @@
+name: Ruby
+
+on: [push, pull_request]
+
+jobs:
+  rspec:
+    name: Rspec
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "3.1.2"
+    - name: Test with Rspec
+      run: |
+        gem install bundler
+        bundle install --path vendor/bundle --quiet --jobs 4 --retry 3
+        bundle exec rspec
