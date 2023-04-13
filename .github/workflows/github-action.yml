@@ -1,8 +1,5 @@
 name: Ruby
 on: [push, pull_request]
-env:
-  RAILS_ENV: test
-  DATABASE_HOST: 127.0.0.1
 jobs:
   rspec:
     name: Rspec
@@ -25,7 +22,6 @@ jobs:
         bundle install --path vendor/bundle --quiet --jobs 4 --retry 3
     - name: Database create and migrate
       run: |
-        sudo service myapp_test start
         cp config/database.yml.ci config/database.yml
         bundle exec rails db:create
         bundle exec rails db:migrate
