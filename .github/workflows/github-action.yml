@@ -25,10 +25,10 @@ jobs:
       run: |
         gem install bundler
         bundle install --path vendor/bundle --quiet --jobs 4 --retry 3
-    -name: Database create and migrate
+    - name: Database create and migrate
       run: |
         bundle exec rails db:create
         bundle exec rails db:migrate
-    -name: Test with Rspec
+    - name: Test with Rspec
       run: |
         bundle exec rspec
