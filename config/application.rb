@@ -18,5 +18,14 @@ module Myapp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # RSpecの設定：falseにした項目を自動生成しないように設定している。
+    config.generators do |g|
+      g.test_framework :rspec,
+        fixtures: false,
+        view_specs: false,
+        helper_specs: false,
+        outing_specs: false
+    end
   end
 end

@@ -11,6 +11,10 @@ header a {
   line-height: 25px;
 }
 
+.logo {
+  font-weight: bold;
+}
+
 .txt-box-answer {
   width: 90%;
   height: 500px;
