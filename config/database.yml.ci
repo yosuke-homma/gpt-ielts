@@ -5,3 +5,7 @@ test:
   password: password
   host: localhost
   database: myapp_test
+  pool: 5
+  timeout: 5000
+  url: <%= ENV.fetch('DATABASE_URL') { 'postgresql://localhost/myapp_test' } %>
+  schema_search_path: public
