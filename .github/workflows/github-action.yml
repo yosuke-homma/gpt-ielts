@@ -1,7 +1,8 @@
 name: Ruby
-
 on: [push, pull_request]
-
+env:
+  RAILS_ENV: test
+  DATABASE_HOST: 127.0.0.1
 jobs:
   rspec:
     name: Rspec
@@ -10,7 +11,7 @@ jobs:
       postgres:
         image: postgres
         ports:
-          - 3306:5432
+          - 5432:5432
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
