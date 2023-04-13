@@ -6,6 +6,14 @@ jobs:
   rspec:
     name: Rspec
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 3306:3306
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -13,8 +21,14 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: "3.2.2"
-    - name: Test with Rspec
+    - name: Bundler and gem install
       run: |
         gem install bundler
         bundle install --path vendor/bundle --quiet --jobs 4 --retry 3
+    -name: Database create and migrate
+      run: |
+        bundle exec rails db:create
+        bundle exec rails db:migrate
+    -name: Test with Rspec
+      run: |
         bundle exec rspec
