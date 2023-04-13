@@ -91,4 +91,7 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  # openaiの外部APIに問い合わせるテストをスキップ
+  config.filter_run_excluding openai: true
 end
