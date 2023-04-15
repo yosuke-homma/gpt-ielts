@@ -1,5 +1,8 @@
 name: Ruby
 on: [push, pull_request]
+env:
+  RAILS_ENV: test
+  DATABASE_HOST: 127.0.0.1
 jobs:
   rspec:
     name: Rspec
@@ -16,7 +19,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: "3.2.2"
-    - name: Bundler and gem install
+    - name: Run bundler and gem install
       run: |
         gem install bundler
         bundle install --path vendor/bundle --quiet --jobs 4 --retry 3
