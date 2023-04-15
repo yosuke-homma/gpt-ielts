@@ -1,8 +1,6 @@
 name: Ruby
 on: [push, pull_request]
-env:
-  RAILS_ENV: test
-  postgres: 127.0.0.1
+
 jobs:
   rspec:
     name: Rspec
@@ -12,22 +10,31 @@ jobs:
         image: postgres
         ports:
           - 5432:5432
+
+    env:
+      postgres: 127.0.0.1
+      POSTGRES_PORT: 5432
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.2.2"
+
       - name: Run bundler and gem install
         run: |
           gem install bundler
           bundle install --path vendor/bundle --quiet --jobs 4 --retry 3
+
       - name: Database create and migrate
         run: |
           cp config/database.yml.ci config/database.yml
           bundle exec rails db:create
           bundle exec rails db:migrate
+
       - name: Test with Rspec
         run: |
           bundle exec rspec
