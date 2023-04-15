@@ -1,14 +1,17 @@
 class ExamsController < ApplicationController
-
   def index
     @exams = Exam.all
+  end
+
+  def show
+    @exam = Exam.find(params[:id])
   end
 
   def new
     @exam = Exam.new
     @exam.question = Openai.new.question
   end
-  
+
   def create
     @exam = Exam.new(exam_params)
     @exam.review = Openai.new.review(exam_params["question"], exam_params["answer"])
@@ -17,10 +20,6 @@ class ExamsController < ApplicationController
     else
       render 'new', status: :unprocessable_entity
     end
-  end
-
-  def show
-    @exam = Exam.find(params[:id])
   end
 
   private

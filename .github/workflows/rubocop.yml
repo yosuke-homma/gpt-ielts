@@ -1,0 +1,17 @@
+# ref https://github.com/everyleaf/el-training/blob/master/github_actions/.github/workflows/lint.yml
+name: Lint
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.2'
+          bundler-cache: true
+      - name: Run lint
+        run: bundle exec rubocop
+    timeout-minutes: 3
