@@ -1,0 +1,9 @@
+<h1>Boost your writing skills and achieve your IELTS goals with ChatGPT!</h1>
+<% if user_signed_in? %>
+  <button>
+    <%= link_to 'Start new exam', new_exam_path %>
+  </button>
+<% else %>
+  <button><%= link_to 'Sign up', new_user_registration_path %></button>
+  <button><%= link_to 'Log in', new_user_session_path %></button>
+<% end %>

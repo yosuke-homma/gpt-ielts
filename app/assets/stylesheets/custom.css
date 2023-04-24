@@ -28,3 +28,15 @@ header a {
 .question {
   font-size: 25px;
 }
+
+.logout-btn {
+  border: none;
+  background: none;
+  margin: 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  font-size: 18px;
+  padding: 12px;
+  line-height: 25px;
+}
