@@ -159,3 +159,5 @@ RSpec/NestedGroups:
   Max: 5
 RSpec/ScatteredSetup:
   Enabled: false
+RSpec/FactoryBot/SyntaxMethods:
+  Enabled: false
