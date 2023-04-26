@@ -1,4 +1,6 @@
 class ExamsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @exams = Exam.all
   end
@@ -13,7 +15,7 @@ class ExamsController < ApplicationController
   end
 
   def create
-    @exam = Exam.new(exam_params)
+    @exam = current_user.exams.build(exam_params)
     @exam.review = Openai.new.review(exam_params["question"], exam_params["answer"])
     if @exam.save
       redirect_to exam_path @exam

@@ -26,5 +26,6 @@ FactoryBot.define do
       effectively to express ideas and convey meaning. Grammatical range and accuracy: 8. The writer demonstrates a good command of
       grammar and uses a variety of sentence structures accurately. There are only a few minor errors in grammar and punctuation.'
     }
+    association :user
   end
 end

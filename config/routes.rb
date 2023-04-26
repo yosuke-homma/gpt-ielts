@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'exams#index'
+  root 'statics#index'
+  get 'home', to: 'statics#index'
+  devise_for :users
   resources :exams
 end
