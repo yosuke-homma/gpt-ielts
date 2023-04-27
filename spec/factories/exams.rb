@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :exam do
     question { 'In some countries, there is a growing trend of people living alone. Discuss the reasons and effects of this trend.' }
-    answer {
+    answer do
       'The trend of people living alone is becoming more prevalent in many countries, and it can be attributed to a variety of factors.
       In this essay, I will discuss some of the reasons for this trend and its potential effects. One of the main reasons for the trend
       of people living alone is changing societal norms and values. As societies become more individualistic, people are prioritizing
@@ -18,14 +18,14 @@ FactoryBot.define do
       effects of living alone, there are also potential negative effects, and it is important to consider the needs of individuals and
       communities as this trend continues to grow. It is essential for individuals to maintain social connections and support systems,
       whether that be through virtual means or physical proximity.'
-    }
-    review {
+    end
+    review do
       'Task response: 8. The essay addresses the prompt and covers both the reasons and effects of the trend of people living alone.
       Coherence and cohesion: 8. The essay is well-organized and flows logically. The writer uses transition words and phrases
       effectively to link ideas and paragraphs. Lexical resource: 8. The writer uses a wide range of vocabulary appropriately and
       effectively to express ideas and convey meaning. Grammatical range and accuracy: 8. The writer demonstrates a good command of
       grammar and uses a variety of sentence structures accurately. There are only a few minor errors in grammar and punctuation.'
-    }
+    end
     association :user
   end
 end

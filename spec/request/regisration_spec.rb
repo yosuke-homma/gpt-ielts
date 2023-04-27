@@ -11,9 +11,9 @@ RSpec.describe 'RegisrationsController', type: :request do
   describe '#create' do
     it '新規ユーザー登録に成功すること' do
       user_params = FactoryBot.attributes_for(:user)
-      expect {
+      expect do
         post user_registration_path, params: { user: user_params }
-      }.to change(User, :count).by(1)
+      end.to change(User, :count).by(1)
     end
   end
 
