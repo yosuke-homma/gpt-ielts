@@ -3,30 +3,30 @@ class Openai
     client = OpenAI::Client.new
     client.chat(
       parameters: {
-        model: "gpt-3.5-turbo", # Required.
+        model: 'gpt-3.5-turbo', # Required.
         messages:
         [{
-          role: "user",
+          role: 'user',
           content: generate_writing_question
         }], # Required.
         temperature: 0.7,
       }
-    ).dig("choices", 0, "message", "content")
+    ).dig('choices', 0, 'message', 'content')
   end
 
   def review(question, answer)
     client = OpenAI::Client.new
     client.chat(
       parameters: {
-        model: "gpt-3.5-turbo", # Required.
+        model: 'gpt-3.5-turbo', # Required.
         messages:
         [{
-          role: "user",
+          role: 'user',
           content: evaluate_writing(question, answer)
         }], # Required.
-          temperature: 0.7,
+        temperature: 0.7,
       }
-    ).dig("choices", 0, "message", "content")
+    ).dig('choices', 0, 'message', 'content')
   end
 
   private
