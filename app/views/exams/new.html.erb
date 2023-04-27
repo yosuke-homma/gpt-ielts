@@ -5,7 +5,8 @@
     <div>
       <p class="question"><%= @exam.question %></p>
       <%= form.hidden_field :question %>
-      <%= form.text_area :answer, class: "txt-box-answer" %>
+      <%= form.text_area :answer, id: "post_answer", class: "txt-box-answer" %>
+      <span id="word_count">0</span>
     </div>
     <%= form.submit "Submit" %>
   <% end %>
