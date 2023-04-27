@@ -1,4 +1,4 @@
-# ref https://github.com/everyleaf/el-training/tree/master/rubocop
+# ref: https://github.com/spree/spree/blob/main/.rubocop.yml
 
 require:
   - rubocop-rails
@@ -6,158 +6,204 @@ require:
   - rubocop-performance
 
 AllCops:
-  NewCops: enable
-  Exclude: # 自動生成ファイルを除外する
-    - 'Gemfile'
-    - 'bin/*'
-    - 'db/schema.rb'
-    - 'config/puma.rb'
-    - 'Rakefile'
-    - 'vendor/**/*'
-    - 'config/environments/*'
-    - 'config/application.rb'
+  TargetRubyVersion: 3.2.2
+  Exclude:
+    - '**/sandbox/**/*'
+    - '**/db/migrate/*'
+    - '**/Gemfile'
+    - '**/Gemfile.lock'
+    - '**/Rakefile'
+    - '**/rails'
+    - '**/*.gemspec'
+    - '**/dummy/**/*'
+    - '**/vendor/**/*'
+    - '**/spec_helper.rb'
+    - '**/templates/**/*'
+    - 'config/**/*'
+    - 'bin/**'
     - 'spec/rails_helper.rb'
-    - 'spec/spec_helper.rb'
 
-Layout/AccessModifierIndentation:
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/ParameterAlignment:
   Enabled: false
-Layout/BeginEndAlignment:
-  Enabled: false
-Layout/DotPosition:
-  Enabled: false
-Layout/EndAlignment:
-  Enabled: false
-Layout/ExtraSpacing:
-  Exclude:
-    - 'db/migrate/**/*'
-Layout/HashAlignment:
-  Enabled: false
-Layout/LineContinuationLeadingSpace:
-  Enabled: false
-Layout/LineLength:
-  Max: 160
-Layout/SpaceBeforeFirstArg:
-  Exclude:
-    - 'db/migrate/**/*'
-Metrics/AbcSize:
-  Enabled: false
-Metrics/BlockLength:
-  Enabled: false
-Metrics/BlockNesting:
-  Enabled: false
+
 Metrics/ClassLength:
-  Enabled: false
-Metrics/CyclomaticComplexity:
-  Enabled: false
-Metrics/MethodLength:
-  Enabled: false
-Metrics/ModuleLength:
-  Enabled: false
-Metrics/ParameterLists:
-  Max: 7
-  MaxOptionalParameters: 7
-Metrics/PerceivedComplexity:
-  Enabled: false
+  CountComments: false
+  Max: 150
 
-Naming/AccessorMethodName:
+Metrics/ModuleLength:
+  CountComments: false
+  Max: 250
   Exclude:
-    - 'app/controllers/**/*'
-Naming/PredicateName:
-  NamePrefix:
-    - is_
-  ForbiddenPrefixes:
-    - is_
-Style/GuardClause:
-  Enabled: false
-Style/BlockDelimiters:
-  Enabled: false
-Style/ClassAndModuleChildren:
-  Enabled: false
-Style/ConditionalAssignment:
-  Enabled: false
-Style/DoubleNegation:
-  Enabled: false
+    - '**/spec/**/*'
+
 Style/Documentation:
   Enabled: false
-Style/EmptyElse:
-  Enabled: false
-Style/EmptyMethod:
-  Enabled: false
-Style/FetchEnvVar:
-  Enabled: false
+
+Layout/LineLength:
+  Max: 150
+  Exclude:
+    - '**/spec/**/*'
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 50
+
+Metrics/BlockLength:
+  CountComments: false
+  Max: 50
+  Exclude:
+    - '**/spec/**/*'
+    - '**/*.rake'
+    - '**/factories/**/*'
+    - '**/config/routes.rb'
+
+Metrics/AbcSize:
+  Max: 45
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+  Enabled: true
+
+Layout/SpaceInsideArrayLiteralBrackets:
+  Exclude:
+    - 'api/spec/integration/**/*.rb'
+    - 'api/lib/spree/api/testing_support/v2/platform_contexts.rb'
+
 Style/FrozenStringLiteralComment:
   Enabled: false
-Style/GlobalStdStream:
+
+Style/ClassVars:
+  Exclude:
+    - 'core/lib/spree/permitted_attributes.rb'
+
+Style/RegexpLiteral:
   Enabled: false
-Style/HashLikeCase:
-  Enabled: false
-Style/HashSyntax:
-  EnforcedShorthandSyntax: either
-Style/IfInsideElse:
-  Enabled: false
-Style/IfUnlessModifier:
-  Enabled: false
-Style/Lambda:
-  Enabled: false
-Style/NegatedIf:
-  Enabled: false
-Style/NumericPredicate:
-  Enabled: false
-Style/OptionalBooleanParameter:
-  Enabled: false
-Style/QuotedSymbols:
-  Enabled: false
-Style/StringLiterals:
-  Enabled: false
-Style/StringLiteralsInInterpolation:
-  Enabled: false
-Style/SymbolArray:
-  Enabled: false
-Style/TrailingCommaInArguments:
-  Enabled: false
-Style/TrailingCommaInArrayLiteral:
-  Enabled: false
-Style/TrailingCommaInHashLiteral:
-  Enabled: false
-Style/ZeroLengthPredicate:
-  Enabled: false
+
 Style/WordArray:
   Enabled: false
 
-# rubocop-rails
-Rails/ActiveRecordCallbacksOrder:
+Style/SymbolArray:
   Enabled: false
-Rails/Blank:
-  UnlessPresent: false
-Rails/BulkChangeTable:
+
+Style/SymbolProc:
+  Exclude:
+    - '**/app/serializers/**/*'
+
+Style/GuardClause:
   Enabled: false
-Rails/Delegate:
+
+Style/TrailingCommaInArrayLiteral:
   Enabled: false
-Rails/I18nLocaleTexts:
+
+Style/TrailingCommaInHashLiteral:
   Enabled: false
-Rails/LexicallyScopedActionFilter:
+
+Style/BarePercentLiterals:
   Enabled: false
-Rails/NotNullColumn:
+
+Style/MutableConstant:
   Enabled: false
-Rails/SkipsModelValidations:
+
+Style/PercentLiteralDelimiters:
   Enabled: false
-Rails/WhereExists:
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Style/RedundantPercentQ:
+  Enabled: false
+
+Lint/ParenthesesAsGroupedExpression:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/AndOr:
+  Exclude:
+    - '**/*controller.rb'
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 7
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - '**/spec/**/*'
+
+Style/NumericLiterals:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/InstanceVariable:
   Enabled: false
 
 RSpec/ContextWording:
   Enabled: false
+
+RSpec/ExpectInHook:
+  Enabled: false
+
 RSpec/ExampleLength:
   Enabled: false
-RSpec/InstanceVariable:
-  Exclude:
-    - 'spec/views/**/*'
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
 RSpec/MultipleExpectations:
   Enabled: false
-RSpec/MultipleMemoizedHelpers:
+
+RSpec/FilePath:
   Enabled: false
-RSpec/NestedGroups:
-  Max: 5
-RSpec/ScatteredSetup:
+
+RSpec/LetSetup:
   Enabled: false
-RSpec/FactoryBot/SyntaxMethods:
+
+RSpec/SubjectStub:
+  Enabled: false
+
+RSpec/VoidExpect:
+  Enabled: false
+
+RSpec/BeforeAfterAll:
   Enabled: false
