@@ -10,9 +10,13 @@ updates:
     schedule:
       interval: "weekly"
       timezone: "Asia/Tokyo"
+    assignees:
+      - "yosuke-homma"
 
   - package-ecosystem: "bundler"
     directory: "/"
     schedule:
       interval: "weekly"
       timezone: "Asia/Tokyo"
+    assignees:
+      - "yosuke-homma"
