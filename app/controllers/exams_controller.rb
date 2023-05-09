@@ -1,8 +1,9 @@
 class ExamsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, except: [:index, :show, :new, :create]
 
   def index
-    @exams = Exam.all
+    @exams = Exam.order(created_at: :desc, id: :asc).all
   end
 
   def show
@@ -24,9 +25,21 @@ class ExamsController < ApplicationController
     end
   end
 
+  def destroy
+    @exam = Exam.find(params[:id])
+    @exam.destroy
+    flash[:notice] = 'Exam deleted'
+    redirect_to root_url, status: :see_other
+  end
+
   private
 
   def exam_params
     params.require(:exam).permit(:question, :answer)
+  end
+
+  def correct_user
+    @exam = current_user.exams.find_by(id: params[:id])
+    redirect_to root_url if @exam.nil?
   end
 end

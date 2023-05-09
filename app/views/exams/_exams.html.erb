@@ -9,6 +9,9 @@
     <p><%= exam.review %></p>
     <h3>Took at:</h3>
     <p><%= exam.created_at %></p>
+    <% if current_user == exam.user %>
+      <%= link_to 'Delete', exam_path(exam), data: { turbo_method: :delete } %>
+    <% end %>
     <hr>
   </div>
 <% end %>
