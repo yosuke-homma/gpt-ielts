@@ -3,7 +3,7 @@ class ExamsController < ApplicationController
   before_action :correct_user, except: [:index, :show, :new, :create]
 
   def index
-    @exams = Exam.all
+    @exams = Exam.order(created_at: :desc, id: :asc).all
   end
 
   def show
