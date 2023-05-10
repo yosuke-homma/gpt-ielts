@@ -38,4 +38,42 @@ RSpec.describe 'ExamsController', type: :request do
       expect(response.body).to include exam.review
     end
   end
+
+  describe '#destroy' do
+    let(:exam) { FactoryBot.create(:exam) }
+
+    context '正常系' do
+      it '受験履歴の削除に成功し、rootにリダイレクトすること' do
+        sign_in exam.user
+        delete exam_path exam
+        expect(response).to redirect_to root_url
+      end
+
+      it '受験履歴の削除に成功し、受験履歴の数が1つ減ること' do
+        sign_in exam.user
+        expect do
+          delete exam_path exam
+        end.to change(Exam, :count).by(-1)
+      end
+    end
+
+    context '異常系' do
+      context 'ログインしていない場合' do
+        it 'ログインページにリダイレクトすること' do
+          delete exam_path exam
+          expect(response).to redirect_to new_user_session_path
+        end
+      end
+
+      context '他のユーザーの受験履歴を削除しようとした場合' do
+        let(:other_user) { FactoryBot.create(:user, email: 'otheruser@email.com') }
+
+        it 'rootにリダイレクトすること' do
+          sign_in other_user
+          delete exam_path exam
+          expect(response).to redirect_to root_url
+        end
+      end
+    end
+  end
 end
