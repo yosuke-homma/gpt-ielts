@@ -16,6 +16,7 @@ class ExamsController < ApplicationController
   end
 
   def create
+    # debugger
     @exam = current_user.exams.build(exam_params)
     @exam.review = Openai.new.review(exam_params['question'], exam_params['answer'])
     if @exam.save

@@ -29,6 +29,28 @@ RSpec.describe 'ExamsController', type: :request do
     end
   end
 
+  describe '#create' do
+    let(:user) { FactoryBot.create(:user) }
+    let(:exam_params) { FactoryBot.attributes_for(:exam).except(:review) }
+
+    context '正常系', openai: true do
+      before do
+        sign_in user
+      end
+
+      it '受験結果の保存に成功し、受験結果のページにリダイレクトすること' do
+        post exams_path, params: { exam: exam_params }
+        expect(response).to redirect_to exam_path(user.exams.last)
+      end
+
+      it '受験結果の保存に成功し、受験履歴が1つ増えること' do
+        expect do
+          post exams_path, params: { exam: exam_params }
+        end.to change(Exam, :count).by(1)
+      end
+    end
+  end
+
   describe '#show' do
     let(:exam) { FactoryBot.create(:exam) }
 
