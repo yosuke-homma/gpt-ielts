@@ -17,9 +17,13 @@ RSpec.describe 'ExamsController', type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'ログインしていない場合、ログインページにリダイレクトされること' do
-      get new_exam_path
-      expect(response).to redirect_to new_user_session_path
+    context '異常系' do
+      context 'ログインしていない場合' do
+        it 'ログインしていない場合、ログインページにリダイレクトされること' do
+          get new_exam_path
+          expect(response).to redirect_to new_user_session_path
+        end
+      end
     end
   end
 
