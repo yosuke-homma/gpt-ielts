@@ -11,10 +11,12 @@ RSpec.describe 'ExamsController', type: :request do
   describe '#new' do
     let(:user) { FactoryBot.create(:user) }
 
-    it '画面の表示に成功すること', openai: true do
-      sign_in user
-      get new_exam_path
-      expect(response).to have_http_status(:ok)
+    context '正常系', openai: true do
+      it '画面の表示に成功すること' do
+        sign_in user
+        get new_exam_path
+        expect(response).to have_http_status(:ok)
+      end
     end
 
     context '異常系' do
