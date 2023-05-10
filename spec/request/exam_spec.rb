@@ -49,6 +49,15 @@ RSpec.describe 'ExamsController', type: :request do
         end.to change(Exam, :count).by(1)
       end
     end
+
+    context '異常系' do
+      context 'ログインしていない場合' do
+        it 'ログインページにリダイレクトすること' do
+          post exams_path, params: { exam: exam_params }
+          expect(response).to redirect_to new_user_session_path
+        end
+      end
+    end
   end
 
   describe '#show' do
