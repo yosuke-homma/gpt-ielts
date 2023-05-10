@@ -71,14 +71,16 @@ RSpec.describe 'ExamsController', type: :request do
     let(:exam) { FactoryBot.create(:exam) }
 
     context '正常系' do
-      it '受験履歴の削除に成功し、rootにリダイレクトすること' do
+      before do
         sign_in exam.user
+      end
+
+      it '受験履歴の削除に成功し、rootにリダイレクトすること' do
         delete exam_path exam
         expect(response).to redirect_to root_url
       end
 
       it '受験履歴の削除に成功し、受験履歴の数が1つ減ること' do
-        sign_in exam.user
         expect do
           delete exam_path exam
         end.to change(Exam, :count).by(-1)
