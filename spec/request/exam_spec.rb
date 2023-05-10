@@ -24,14 +24,14 @@ RSpec.describe 'ExamsController', type: :request do
   end
 
   describe '#show' do
-    it '画面の表示に成功すること', openai: true do
-      exam = FactoryBot.create(:exam)
+    let(:exam) { FactoryBot.create(:exam) }
+
+    it '画面の表示に成功すること' do
       get exam_path exam
       expect(response).to have_http_status(:ok)
     end
 
-    it 'テストの内容と一致すること', openai: true do
-      exam = FactoryBot.create(:exam)
+    it 'テストの内容と一致すること' do
       get exam_path exam
       expect(response.body).to include exam.question
       expect(response.body).to include exam.answer
