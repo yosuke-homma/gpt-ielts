@@ -24,7 +24,7 @@ class Openai
         messages:
         [{
           role: 'user',
-          content: evaluate_writing(question, answer)
+          content: evaluate_essay(question, answer)
         }],
         temperature: 0.7,
       }
@@ -40,7 +40,7 @@ class Openai
     EXAM
   end
 
-  def evaluate_writing(question, answer)
+  def evaluate_essay(question, answer)
     <<~REVIEW
       Could you evaluate this essay for me based on the Writing Task 2 prompt
       for the IELTS exam, and let me know the score on a scale of 0 (the lowest) to 9 (the highest)?
