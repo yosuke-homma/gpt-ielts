@@ -6,17 +6,17 @@ class Openai
   end
 
   def question
-    chat(parameters(messages: generate_writing_question))
+    chat(generate_writing_question)
   end
 
   def review(question, answer)
-    chat(parameters(messages: evaluate_essay(question, answer)))
+    chat(evaluate_essay(question, answer))
   end
 
   private
 
-  def chat(parameters)
-    response = @client.chat(parameters:)
+  def chat(messages)
+    response = @client.chat(parameters: parameters(messages:))
     response.dig('choices', 0, 'message', 'content')
   end
 
