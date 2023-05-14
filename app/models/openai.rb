@@ -1,4 +1,6 @@
 class Openai
+  OPENAI_MODEL = 'gpt-3.5-turbo'
+
   def initialize
     @client = OpenAI::Client.new
   end
@@ -6,7 +8,7 @@ class Openai
   def question
     @client.chat(
       parameters: {
-        model: 'gpt-3.5-turbo',
+        model: OPENAI_MODEL,
         messages:
         [{
           role: 'user',
@@ -20,7 +22,7 @@ class Openai
   def review(question, answer)
     @client.chat(
       parameters: {
-        model: 'gpt-3.5-turbo',
+        model: OPENAI_MODEL,
         messages:
         [{
           role: 'user',
