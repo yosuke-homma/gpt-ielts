@@ -6,44 +6,39 @@ class Openai
   end
 
   def question
-    @client.chat(
-      parameters: {
-        model: OPENAI_MODEL,
-        messages:
-        [{
-          role: 'user',
-          content: generate_writing_question
-        }],
-        temperature: 0.7,
-      }
-    ).dig('choices', 0, 'message', 'content')
+    chat(parameters(messages: generate_writing_question))
   end
 
   def review(question, answer)
-    @client.chat(
-      parameters: {
-        model: OPENAI_MODEL,
-        messages:
-        [{
-          role: 'user',
-          content: evaluate_essay(question, answer)
-        }],
-        temperature: 0.7,
-      }
-    ).dig('choices', 0, 'message', 'content')
+    chat(parameters(messages: evaluate_essay(question, answer)))
   end
 
   private
 
+  def chat(parameters)
+    response = @client.chat(parameters:)
+    response.dig('choices', 0, 'message', 'content')
+  end
+
+  def parameters(messages:)
+    {
+      model: OPENAI_MODEL,
+      messages:,
+      temperature: 0.7
+    }
+  end
+
   def generate_writing_question
-    <<~EXAM
+    content = <<~EXAM
       Could you provide me with a Writing Task 2 prompt for the IELTS exam?
       You only need to give me one, that would be perfect.
     EXAM
+
+    generate_message(content)
   end
 
   def evaluate_essay(question, answer)
-    <<~REVIEW
+    content = <<~REVIEW
       Could you evaluate this essay for me based on the Writing Task 2 prompt
       for the IELTS exam, and let me know the score on a scale of 0 (the lowest) to 9 (the highest)?
 
@@ -67,5 +62,11 @@ class Openai
       Grammatical range and accuracy: from 0 to 9
       Please write the details here
     REVIEW
+
+    generate_message(content)
+  end
+
+  def generate_message(content)
+    [{ role: 'user', content: }]
   end
 end
