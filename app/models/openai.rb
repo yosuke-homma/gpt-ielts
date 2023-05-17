@@ -1,5 +1,5 @@
 class Openai
-  OPENAI_MODEL = 'gpt-3.5-turbo'
+  OPENAI_MODEL = 'gpt-3.5-turbo'.freeze
 
   def initialize
     @client = OpenAI::Client.new
