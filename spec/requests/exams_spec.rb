@@ -21,7 +21,7 @@ RSpec.describe 'ExamsController', type: :request do
 
     context '異常系' do
       context 'ログインしていない場合' do
-        it 'ログインしていない場合、ログインページにリダイレクトされること' do
+        it 'ログインページにリダイレクトすること' do
           get new_exam_path
           expect(response).to redirect_to new_user_session_path
         end
