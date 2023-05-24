@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'ExamsController', type: :request do
+  let(:user) { FactoryBot.create(:user) }
+  let(:other_user) { FactoryBot.create(:user, email: 'otheruser@email.com') }
+  let(:exam) { FactoryBot.create(:exam) }
+  let(:exam_params) { FactoryBot.attributes_for(:exam).except(:review) }
+  
   describe '#index' do
     it '画面の表示に成功すること' do
       get exams_path
@@ -9,8 +14,6 @@ RSpec.describe 'ExamsController', type: :request do
   end
 
   describe '#new' do
-    let(:user) { FactoryBot.create(:user) }
-
     context '正常系', openai: true do
       it '画面の表示に成功すること' do
         sign_in user
@@ -30,9 +33,6 @@ RSpec.describe 'ExamsController', type: :request do
   end
 
   describe '#create' do
-    let(:user) { FactoryBot.create(:user) }
-    let(:exam_params) { FactoryBot.attributes_for(:exam).except(:review) }
-
     context '正常系', openai: true do
       before do
         sign_in user
@@ -61,8 +61,6 @@ RSpec.describe 'ExamsController', type: :request do
   end
 
   describe '#show' do
-    let(:exam) { FactoryBot.create(:exam) }
-
     it '画面の表示に成功すること' do
       get exam_path exam
       expect(response).to have_http_status(:ok)
@@ -70,15 +68,15 @@ RSpec.describe 'ExamsController', type: :request do
 
     it 'テストの内容と一致すること' do
       get exam_path exam
-      expect(response.body).to include exam.question
-      expect(response.body).to include exam.answer
-      expect(response.body).to include exam.review
+      aggregate_failures do
+        expect(response.body).to include exam.question
+        expect(response.body).to include exam.answer
+        expect(response.body).to include exam.review
+      end
     end
   end
 
   describe '#destroy' do
-    let(:exam) { FactoryBot.create(:exam) }
-
     context '正常系' do
       before do
         sign_in exam.user
@@ -105,8 +103,6 @@ RSpec.describe 'ExamsController', type: :request do
       end
 
       context '他のユーザーの受験履歴を削除しようとした場合' do
-        let(:other_user) { FactoryBot.create(:user, email: 'otheruser@email.com') }
-
         it 'rootにリダイレクトすること' do
           sign_in other_user
           delete exam_path exam
