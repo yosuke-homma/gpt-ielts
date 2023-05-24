@@ -5,7 +5,7 @@ RSpec.describe 'ExamsController', type: :request do
   let(:other_user) { FactoryBot.create(:user, email: 'otheruser@email.com') }
   let(:exam) { FactoryBot.create(:exam) }
   let(:exam_params) { FactoryBot.attributes_for(:exam).except(:review) }
-  
+
   describe '#index' do
     it '画面の表示に成功すること' do
       get exams_path
