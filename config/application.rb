@@ -27,5 +27,8 @@ module Myapp
                        helper_specs: false,
                        outing_specs: false
     end
+
+    # 認証トークンをremoteフォームに埋め込む
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end

@@ -1,0 +1,6 @@
+<% @users.each do |user| %>
+  <div>
+    <h2><%= link_to "#{user.name}", user_path(user) %></h2>
+    <hr>
+  </div>
+<% end %>
