@@ -16,6 +16,7 @@
   ```
   $ docker-compose exec web rails db:create
   $ docker-compose exec web rails db:migrate
+  $ docker-compose exec web rails db:seed
   ```
 
 4. Create a `.env` file in the project root directory with your OpenAI access token:
