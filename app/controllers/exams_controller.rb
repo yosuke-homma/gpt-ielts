@@ -26,7 +26,7 @@ class ExamsController < ApplicationController
   end
 
   def destroy
-    @exam = Exam.find(params[:id])
+    @exam = current_user.exams.find(params[:id])
     @exam.destroy
     flash[:notice] = 'Exam deleted'
     redirect_to root_url, status: :see_other
