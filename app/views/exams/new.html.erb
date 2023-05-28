@@ -1,4 +1,4 @@
-<h1>IELTS Writing Task2<h1>
+<h1>IELTS Writing Task2</h1>
 <div>
   <%= form_with model: @exam do |form| %>
     <%= render 'shared/error_messages' %>
@@ -9,8 +9,8 @@
       <p id="word_count">0</p>
       <div>
         <p id="timer">40:00</p>
-        <button id="startBtn">Start</button>
-        <button id="stopBtn">Stop</button>
+        <input id="startBtn" type="button" value="Start">
+        <input id="stopBtn" type="button" value="Stop">
       </div>
     </div>
     <%= form.submit "Submit" %>
