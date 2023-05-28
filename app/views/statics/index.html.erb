@@ -1,7 +1,7 @@
 <h1>Boost your writing skills and achieve your IELTS goals with ChatGPT!</h1>
 <% if user_signed_in? %>
   <button>
-    <%= link_to 'Start new exam', new_exam_path %>
+    <%= link_to 'Start new exam', new_exam_path, data: { turbo: false } %>
   </button>
 <% else %>
   <button><%= link_to 'Sign up', new_user_registration_path %></button>
