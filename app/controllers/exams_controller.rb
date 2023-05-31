@@ -1,6 +1,6 @@
 class ExamsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :correct_user, except: [:index, :show, :new, :create]
+  before_action :correct_user, except: [:index, :show, :new, :create, :users_who_liked]
 
   def index
     @exams = Exam.recent.all.eager_load([:user])
@@ -30,6 +30,11 @@ class ExamsController < ApplicationController
     @exam.destroy
     flash[:notice] = 'Exam deleted'
     redirect_to root_url, status: :see_other
+  end
+
+  def users_who_liked
+    @users = Exam.find(params[:id]).liked_users
+    render 'show_like'
   end
 
   private
