@@ -1,16 +1,18 @@
 <% @exams.each do |exam| %>
-  <div>
-    <h3>Question:</h3>
-    <p><%= exam.question %></p>
-    <h3>Answer:</h3>
-    <p><%= exam.answer %></p>
-    <h3>Review:</h3>
-    <p><%= exam.review %></p>
-    <h3>Took at:</h3>
-    <p><%= exam.created_at %></p>
-    <% if current_user == exam.user %>
-      <%= link_to 'Delete', exam_path(exam), data: { turbo_method: :delete } %>
-    <% end %>
-    <hr>
-  </div>
+  <%= link_to exam_path(exam) do %>
+    <div>
+      <h3>Question:</h3>
+      <p><%= exam.question %></p>
+      <h3>Answer:</h3>
+      <p><%= exam.answer %></p>
+      <h3>Review:</h3>
+      <p><%= exam.review %></p>
+      <h3>Took at:</h3>
+      <p><%= exam.created_at %></p>
+      <% if current_user == exam.user %>
+        <%= link_to 'Delete', exam_path(exam), data: { turbo_method: :delete } %>
+      <% end %>
+      <hr>
+    </div>
+  <% end %>
 <% end %>

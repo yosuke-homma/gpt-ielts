@@ -111,4 +111,25 @@ RSpec.describe 'ExamsController', type: :request do
       end
     end
   end
+
+  describe '#users_who_liked' do
+    let!(:like) { FactoryBot.create(:like, user:, exam:) }
+
+    context '正常系' do
+      it '画面の表示に成功すること' do
+        sign_in user
+        get users_who_liked_exam_path(exam)
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context '異常系' do
+      context 'ログインしていない場合' do
+        it 'ログインページにリダイレクトすること' do
+          get users_who_liked_exam_path(exam)
+          expect(response).to redirect_to new_user_session_path
+        end
+      end
+    end
+  end
 end

@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :exams, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_exams, through: :likes, source: :exam
   has_many :active_relationships, class_name: 'Relationship',
                                   foreign_key: 'follower_id',
                                   inverse_of: :follower,

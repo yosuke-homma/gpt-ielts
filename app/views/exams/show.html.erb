@@ -7,4 +7,6 @@
 <p><%= @exam.review %></p>
 <h2>Took at</h2>
 <p><%= @exam.created_at %></p>
+<%= render 'shared/like_stats' %>
+<%= render 'like_form' if user_signed_in? %>
 <p><%= link_to 'Home', exams_path %></p>

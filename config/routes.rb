@@ -7,6 +7,11 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  resources :exams
+  resources :exams do
+    member do
+      get :users_who_liked
+    end
+  end
   resources :relationships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
 end
