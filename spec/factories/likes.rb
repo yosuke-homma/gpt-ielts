@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :like do
-    user { nil }
-    exam { nil }
+    user_id { 1 }
+    exam_id { 1 }
   end
 end

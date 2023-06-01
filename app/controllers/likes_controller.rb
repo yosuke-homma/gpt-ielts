@@ -3,8 +3,12 @@ class LikesController < ApplicationController
   before_action :exam
 
   def create
-    current_user.like(@exam)
-    redirect_to @exam
+    @like = current_user.likes.build(exam: @exam)
+    if @like.save
+      redirect_to @exam
+    else
+      redirect_to @exam, alert: @like.errors.full_messages.join(', ')
+    end
   end
 
   def destroy
