@@ -1,6 +1,10 @@
 # ref https://github.com/everyleaf/el-training/blob/master/github_actions/.github/workflows/lint.yml
 name: Lint
-on: [push, pull_request]
+on: 
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    type: [ opened, reopened ]
 
 jobs:
   lint:
