@@ -1,0 +1,2 @@
+%p= link_to "#{@user.following.count} following", following_user_path(@user)
+%p= link_to "#{@user.followers.count} followers", followers_user_path(@user)
