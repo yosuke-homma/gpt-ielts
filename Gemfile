@@ -77,6 +77,7 @@ group :development do
   # gem "spring"
 
   gem 'bullet'
+  gem 'brakeman'
 end
 
 group :test do
