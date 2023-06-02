@@ -1,0 +1,14 @@
+%h1 IELTS Writing Task2
+%div
+  = form_with model: @exam do |form|
+    = render 'shared/error_messages'
+    %div
+      %p.question= @exam.question
+      = form.hidden_field :question
+      = form.text_area :answer, id: "post_answer", class: "txt-box-answer"
+      %p#word_count 0
+      %div
+        %p#timer 40:00
+        %input#startBtn{:type => "button", :value => "Start"}/
+        %input#stopBtn{:type => "button", :value => "Stop"}/
+    = form.submit "Submit"

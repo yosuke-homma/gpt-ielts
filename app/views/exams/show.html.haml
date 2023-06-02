@@ -1,0 +1,12 @@
+%h1 Result
+%h2 Question
+%p= @exam.question
+%h2 Answer
+%p= @exam.answer
+%h2 Review
+%p= @exam.review
+%h2 Took at
+%p= @exam.created_at
+= render 'shared/like_stats'
+= render 'like_form' if user_signed_in?
+%p= link_to 'Home', exams_path

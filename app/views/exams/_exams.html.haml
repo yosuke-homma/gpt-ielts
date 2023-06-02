@@ -1,0 +1,14 @@
+- @exams.each do |exam|
+  = link_to exam_path(exam) do
+    %div
+      %h3 Question:
+      %p= exam.question
+      %h3 Answer:
+      %p= exam.answer
+      %h3 Review:
+      %p= exam.review
+      %h3 Took at:
+      %p= exam.created_at
+      - if current_user == exam.user
+        = link_to 'Delete', exam_path(exam), data: { turbo_method: :delete }
+      %hr/

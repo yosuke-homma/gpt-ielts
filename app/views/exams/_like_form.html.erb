@@ -1,9 +1,0 @@
-<% unless current_user == @exam.user %>
-  <div id="like_form">
-  <% if @exam.liked_by?(current_user) %>
-    <%= render 'unlike' %>
-  <% else %>
-    <%= render 'like' %>
-  <% end %>
-  </div>
-<% end %>
