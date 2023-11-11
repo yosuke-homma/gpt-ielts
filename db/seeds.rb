@@ -7,7 +7,7 @@
   )
 end
 
-User.all.each do |user|
+User.all.find_each do |user|
   user.exams.create!(
     question: Faker::Lorem.sentence,
     answer: Faker::Lorem.sentence,
