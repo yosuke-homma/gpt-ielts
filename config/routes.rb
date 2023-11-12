@@ -1,17 +1,24 @@
 Rails.application.routes.draw do
-  root 'statics#index'
-  get 'home', to: 'statics#index'
+  namespace 'api' do
+    namespace 'v1' do
+      root 'statics#index'
+      get 'home', to: 'statics#index'
+
+      resources :users, only: [:index, :show] do
+        member do
+          get :following, :followers
+        end
+      end
+
+      resources :exams do
+        member do
+          get :users_who_liked
+        end
+      end
+    end
+  end
+
   devise_for :users
-  resources :users, only: [:index, :show] do
-    member do
-      get :following, :followers
-    end
-  end
-  resources :exams do
-    member do
-      get :users_who_liked
-    end
-  end
   resources :relationships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
 end
