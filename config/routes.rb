@@ -1,7 +1,27 @@
 Rails.application.routes.draw do
-  root 'statics#index'
-  get 'home', to: 'statics#index'
-  devise_for :users
+  namespace 'api' do
+    namespace 'v1' do
+      root 'statics#index'
+      get 'home', to: 'statics#index'
+
+      resources :users, only: [:index, :show] do
+        member do
+          get :following, :followers
+        end
+      end
+    end
+  end
+
+  devise_for :users, path: '', path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    registration: 'signup'
+  },
+  controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
+
   resources :users, only: [:index, :show] do
     member do
       get :following, :followers

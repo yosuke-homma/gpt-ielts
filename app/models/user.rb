@@ -1,8 +1,10 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include Devise::JWT::RevocationStrategies::JTIMatcher
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :validatable, :jwt_authenticatable,
+         jwt_revocation_strategy: self
   has_many :exams, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_exams, through: :likes, source: :exam

@@ -51,6 +51,9 @@ gem "bootsnap", require: false
 gem "ruby-openai"
 
 gem 'devise'
+gem 'devise-jwt'
+gem 'rack-cors'
+gem 'jsonapi-serializer'
 
 gem 'haml-rails'
 gem 'html2haml'
