@@ -11,7 +11,7 @@ module Api
 
       def show
         @exam = Exam.find(params[:id])
-        render json: @exams
+        render json: @exam
       end
 
       def create
@@ -43,7 +43,7 @@ module Api
 
       def correct_user
         @exam = current_user.exams.find_by(id: params[:id])
-        render json: { error: 'Not Found' }, status: :not_found if @exam.nil?
+        render json: { message: 'Not Found' }, status: :not_found if @exam.nil?
       end
     end
   end
