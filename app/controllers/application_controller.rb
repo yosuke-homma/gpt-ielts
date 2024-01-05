@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
   before_action :configure_sign_up_params, only: [:create], if: :devise_controller?
   before_action :configure_account_update_params, only: [:update], if: :devise_controller?
 
@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

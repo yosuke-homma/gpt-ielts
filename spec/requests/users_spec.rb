@@ -9,7 +9,7 @@ RSpec.describe 'UsersController', type: :request do
 
   describe '#index' do
     context '正常系' do
-      it '画面の表示に成功すること' do
+      it '200が返ってくること' do
         get users_path
         expect(response).to have_http_status(:ok)
       end
@@ -18,7 +18,7 @@ RSpec.describe 'UsersController', type: :request do
 
   describe '#show' do
     context '正常系' do
-      it '画面の表示に成功すること' do
+      it '200が返ってくること' do
         get user_path(user)
         expect(response).to have_http_status(:ok)
       end
@@ -27,7 +27,7 @@ RSpec.describe 'UsersController', type: :request do
 
   describe '#following' do
     context '正常系' do
-      it '画面の表示に成功すること' do
+      it '200が返ってくること' do
         get following_user_path(user)
         expect(response).to have_http_status(:ok)
       end
@@ -38,16 +38,17 @@ RSpec.describe 'UsersController', type: :request do
         sign_out user
       end
 
-      it 'ログインページにリダイレクトする' do
+      it '401が返ってくること' do
         get following_user_path(user)
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to have_http_status '401'
+        expect(response.body).to eq('You need to sign in or sign up before continuing.')
       end
     end
   end
 
   describe '#followers' do
     context '正常系' do
-      it '画面の表示に成功すること' do
+      it '200が返ってくること' do
         get followers_user_path(user)
         expect(response).to have_http_status(:ok)
       end
@@ -58,9 +59,10 @@ RSpec.describe 'UsersController', type: :request do
         sign_out user
       end
 
-      it 'ログインページにリダイレクトする' do
+      it '401が返ってくること' do
         get followers_user_path(user)
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to have_http_status '401'
+        expect(response.body).to eq('You need to sign in or sign up before continuing.')
       end
     end
   end
