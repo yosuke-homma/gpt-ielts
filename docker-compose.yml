@@ -22,5 +22,17 @@ services:
     depends_on:
       - db
 
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend/app:/usr/src/app
+    command: sh -c "npm install && npm start"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - web
+
 volumes:
   postgres_volume:
